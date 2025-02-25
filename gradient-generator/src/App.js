@@ -95,12 +95,12 @@ function App() {
 
   return (
     <>
-      <div className="flex gap-2 bg-gradient-to-r from-black to-gray-800 p-2 sticky top-0 z-10">
-        <img src="logo.png" alt="logo" className="w-10 h-10" />
-        <h1 className="text-3xl text-white italic">Gradient Generator</h1>
+      <div className="flex gap-3 bg-white/30 backdrop-blur-md shadow-md p-2 sticky top-0 z-10">
+        <img src="logo.png" alt="logo" className="w-10 h-10 z-100" />
+        <a href='https://gradient-generator-1f9hld24l-arhammurtazas-projects.vercel.app/' className="text-3xl text-gray z-100">Gradient Generator</a>
       </div>
       <div className="min-h-screen bg-gray-100 p-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-3 gap-2 max-w-6xl mx-auto space-y-4">
           {/* Gradient Preview */}
           <div
             ref={gradientPreviewRef}
@@ -114,7 +114,7 @@ function App() {
           </div>
 
           {/* CSS Output */}
-          <div className="gap-4 bg-white p-6 rounded-lg shadow flex flex-col items-center">
+          <div className="col-start-1 row-start-2 gap-4 bg-white p-6 rounded-lg shadow flex flex-col items-center">
             <textarea
               value={`background: ${gradientStyle.background};`}
               readOnly
@@ -125,7 +125,7 @@ function App() {
           </div>
 
           {/* Controls */}
-          <div className="bg-white p-6 rounded-lg shadow space-y-6">
+          <div className="col-start-1 row-start-3 md:col-start-2 md:row-span-3 bg-white p-6 rounded-lg shadow space-y-6">
             {/* Angle Control */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -178,7 +178,9 @@ function App() {
                     min="0"
                     max="100"
                     value={stop.position}
-                    onChange={(e) => handlePositionChange(stop.id, e.target.value)}
+                    onChange={(e) => {handlePositionChange(stop.id, e.target.value)
+                      setColorStops(prevStops => [...prevStops].sort((a, b) => a.position - b.position))
+                    }}
                     className="w-16 px-2 py-1 border rounded text-sm"
                   />
 
@@ -195,7 +197,7 @@ function App() {
           </div>
 
           {/* Presets */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="col-start-1 row-start-4 md:row-start-3 bg-white p-6 rounded-lg shadow">
             <h3 className="text-sm font-medium text-gray-700 mb-4">Presets</h3>
             <div className="grid grid-cols-3 gap-4">
               {presets.map((preset) => (
