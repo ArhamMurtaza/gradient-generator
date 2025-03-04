@@ -100,7 +100,7 @@ function App() {
         <a href='https://gradient-generator-1f9hld24l-arhammurtazas-projects.vercel.app/' className="text-3xl text-gray z-100">Gradient Generator</a>
       </div>
       <div className="min-h-screen bg-gray-100 p-8">
-        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-3 gap-2 max-w-6xl mx-auto space-y-4">
+        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-3 gap-2 max-w-6xl mx-auto space-y-2">
           {/* Gradient Preview */}
           <div
             ref={gradientPreviewRef}
@@ -114,18 +114,18 @@ function App() {
           </div>
 
           {/* CSS Output */}
-          <div className="col-start-1 row-start-2 gap-4 bg-white p-6 rounded-lg shadow flex flex-col items-center">
+          <div className="col-start-1 row-start-2 gap-4 bg-white p-6 rounded-lg shadow flex flex-col items-center overflow-auto">
             <textarea
               value={`background: ${gradientStyle.background};`}
               readOnly
-              className="w-full p-3 bg-gray-50 rounded font-mono text-sm focus:outline-none resize-none h-24"
+              className="w-full p-3 bg-gray-50 rounded font-mono text-sm focus:outline-none resize-none h-32"
               rows="3"
             />
             <button className="w-20 mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95 transition duration-150 ease-in-out hover:pointer cursor-pointer" onClick={copyCSS}>Copy</button>
           </div>
 
           {/* Controls */}
-          <div className="col-start-1 row-start-3 md:col-start-2 md:row-span-3 bg-white p-6 rounded-lg shadow space-y-6">
+          <div className="col-start-1 row-start-3 md:col-start-2 md:row-span-5 overflow-y-auto bg-white p-6 rounded-lg shadow space-y-3 md:max-h-202 max-h-64">
             {/* Angle Control */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -142,7 +142,7 @@ function App() {
             </div>
 
             {/* Color Stops */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {sortedStops.map((stop) => (
                 <div key={stop.id} className="flex items-center gap-4">
                   <div className="relative">
@@ -204,7 +204,7 @@ function App() {
                 <button
                   key={preset.name}
                   onClick={() => applyPreset(preset)}
-                  className="h-16 rounded-lg shadow-sm hover:shadow transition-shadow"
+                  className="h-16 rounded-lg shadow-sm hover:shadow hover:cursor-pointer transition-shadow"
                   style={{
                     background: `linear-gradient(${preset.angle}deg, ${preset.stops
                       .map(stop => `${stop.color} ${stop.position}%`)
